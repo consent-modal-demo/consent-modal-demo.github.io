@@ -1,0 +1,26 @@
+{
+  "name": "consent-modal-demo.github.io",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild:root-vue-app": "mkdirp dist",
+    "build:root-vue-app": "cd ../root-vue-app && npm run build",
+    "postbuild:root-vue-app": "cp ../root-vue-app/dist/* dist/",
+    "prebuild:preact-subapp": "mkdirp dist/some-path",
+    "build:preact-subapp": "cd ../preact-subapp && npm run build",
+    "postbuild:preact-subapp": "cp ../preact-subapp/dist/* dist/some-path/",
+    "prebuild": "rimraf dist",
+    "build": "concurrently npm:build:root-vue-app npm:build:preact-subapp",
+    "prestart": "npm run build",
+    "start": "http-server dist -o"
+  },
+  "author": "Ronald Chen <pyrogx1133@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "6.4.0",
+    "http-server": "14.0.0",
+    "mkdirp": "1.0.4",
+    "rimraf": "3.0.2"
+  }
+}
