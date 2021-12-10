@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild:root-vue-app": "mkdirp docs",
     "build:root-vue-app": "cd ../root-vue-app && npm run build",
-    "postbuild:root-vue-app": "cp ../root-vue-app/dist/* docs/",
-    "prebuild:preact-subapp": "mkdirp docs/some-path",
+    "postbuild:root-vue-app": "cp ../root-vue-app/dist/* .",
+    "prebuild:preact-subapp": "mkdirp some-path",
     "build:preact-subapp": "cd ../preact-subapp && npm run build",
-    "postbuild:preact-subapp": "cp ../preact-subapp/dist/* docs/some-path/",
-    "prebuild": "rimraf docs",
+    "postbuild:preact-subapp": "cp ../preact-subapp/dist/* some-path/",
+    "prebuild": "rimraf index.html bundle.root.*.js some-path",
     "build": "concurrently npm:build:root-vue-app npm:build:preact-subapp",
     "prestart": "npm run build",
-    "start": "http-server docs -o"
+    "start": "http-server . -o"
   },
   "author": "Ronald Chen <pyrogx1133@gmail.com>",
   "license": "ISC",
